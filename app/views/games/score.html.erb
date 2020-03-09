@@ -1,2 +1,13 @@
-<h1>Games#score</h1>
-<p>Find me in app/views/games/score.html.erb</p>
+<h1>Result</h1>
+<!-- <p>Find me in app/views/games/score.html.erb</p> -->
+
+
+  <% if @user["found"] == true %>
+    <strong>Congratulation!</strong> <%= "#{@finded_word.upcase} is a valid English word"%>
+    <% elsif @user["found"] == false %>
+    <%= "Sorry but " %><strong><%= "#{@finded_word.upcase} "%></strong> <%= "does not seem to be a valid English word..." %>
+    <% elsif (@finded_word.upcase.split('') - @letters).length > 0 %>
+    <%= "Sorry but " %><strong><%= "#{@finded_word.upcase} "%></strong> <%= "can't be built out of #{@letters.join(',')}" %>
+  <% end %>
+<br>
+<%= link_to "Play Again", new_path %>
